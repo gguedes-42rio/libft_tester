@@ -12,13 +12,9 @@ SRC = $(addprefix src/, main.cpp)
 
 OBJ = $(SRC:.cpp=.o)
 
-TESTS = $(addprefix tests/, atoi_test.cpp bzero_test.cpp calloc_test.cpp)
+TESTS = atoi bzero calloc
 
-TESTS_OBJ = $(TESTS:.cpp=.o)
-
-TESTS_BONUS = $(addprefix tests/, )
-
-TESTS_OBJ_BONUS = $(TESTS_BONUS:.cpp=.o)
+TESTS_BONUS =
 
 CC = g++
 
@@ -27,35 +23,35 @@ CFLAGS = -I $(INCLUDE)
 all: m
 
 # Rule to compile all mandatory files with src and *.a
-m: $(LIBFT) $(OBJ) $(TESTS_OBJ)
-	$(CC) $(TESTS_OBJ) $(OBJ) $(GTEST) $(LIBFT) -o $(NAME) && ./$(NAME)
+m: $(LIBFT) $(OBJ)
+	@make -s $(TESTS)
 
 # Rule to compile all bonus files with src and *.a
-b: libft_bonus $(OBJ) $(TESTS_OBJ_BONUS)
-	$(CC) $(TESTS_OBJ_BONUS) $(OBJ) $(GTEST) $(LIBFT) -o $(NAME) && ./$(NAME)
+b: libft_bonus $(OBJ)
+	@make -s $(TESTS_BONUS)
 
 # Rule to compile a single file with src and *.a
 %: tests/%_test.cpp $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) -c $< -o $(<:.cpp=.o)
-	$(CC) $(<:.cpp=.o) $(OBJ) $(GTEST) $(LIBFT) -o $(NAME) && ./$(NAME)
+	@$(CC) $(CFLAGS) -c $< -o $(<:.cpp=.o)
+	@$(CC) $(<:.cpp=.o) $(OBJ) $(GTEST) $(LIBFT) -o $(NAME) && ./$(NAME)
 
 .cpp.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.cpp=.o)
+	@$(CC) $(CFLAGS) -c $< -o $(<:.cpp=.o)
 
 $(LIBFT):
-	make -C $(LIBFT_PATH)
+	@make -s -C $(LIBFT_PATH)
 
 libft_bonus:
-	make -C $(LIBFT_PATH) bonus
+	@make -s -C $(LIBFT_PATH) bonus
 
 clean:
-	make -C $(LIBFT_PATH) clean
-	$(RM) $(OBJ) $(TESTS_OBJ) $(TESTS_OBJ_BONUS)
+	@make -s -C $(LIBFT_PATH) clean
+	@$(RM) $(OBJ) $(addprefix tests/, $(TESTS:=_test.o) $(TESTS_BONUS:=_test.o))
 
 fclean:
-	make -C $(LIBFT_PATH) fclean
-	$(RM) $(OBJ) $(TESTS_OBJ) $(TESTS_OBJ_BONUS)
-	$(RM) $(NAME)
+	@make -s -C $(LIBFT_PATH) fclean
+	@$(RM) $(OBJ) $(addprefix tests/, $(TESTS:=_test.o) $(TESTS_BONUS:=_test.o))
+	@$(RM) $(NAME)
 
 re: fclean all
 

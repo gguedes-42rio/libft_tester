@@ -28,16 +28,16 @@ all: m
 
 # Rule to compile all mandatory files with src and *.a
 m: $(LIBFT) $(OBJ) $(TESTS_OBJ)
-	$(CC) $(TESTS_OBJ) $(OBJ) $(GTEST) $(LIBFT) -o $(NAME)
+	$(CC) $(TESTS_OBJ) $(OBJ) $(GTEST) $(LIBFT) -o $(NAME) && ./$(NAME)
 
 # Rule to compile all bonus files with src and *.a
 b: libft_bonus $(OBJ) $(TESTS_OBJ_BONUS)
-	$(CC) $(TESTS_OBJ_BONUS) $(OBJ) $(GTEST) $(LIBFT) -o $(NAME)
+	$(CC) $(TESTS_OBJ_BONUS) $(OBJ) $(GTEST) $(LIBFT) -o $(NAME) && ./$(NAME)
 
 # Rule to compile a single file with src and *.a
 %: tests/%_test.cpp $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) -c $< -o $(<:.cpp=.o)
-	$(CC) $(<:.cpp=.o) $(OBJ) $(GTEST) $(LIBFT) -o $(NAME)
+	$(CC) $(<:.cpp=.o) $(OBJ) $(GTEST) $(LIBFT) -o $(NAME) && ./$(NAME)
 
 .cpp.o:
 	$(CC) $(CFLAGS) -c $< -o $(<:.cpp=.o)

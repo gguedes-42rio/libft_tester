@@ -9,7 +9,7 @@ Im making this to learn about googletest and cpp. I know there are other testers
 
 In makefile you can find the LIBFT_PATH rule, where you set the relative or absolute path to your libft directory
 
-![LIBFT_PATH](https://prnt.sc/6_AbQg1Tn5FX)
+![libft_path](https://user-images.githubusercontent.com/101738916/219993184-116aa7f5-f52b-49ca-a1a2-2db56252b444.PNG)
 
 Then you can simply run "make" and the rule you want to run the tests
 

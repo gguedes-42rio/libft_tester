@@ -30,3 +30,10 @@ will run only bonus functions tests
 #### "make atoi bzero":
 
 will run the atoi and bzero functions tests, and you can do this to any other function
+
+## Screenshots
+
+![sucess_tests](https://user-images.githubusercontent.com/101738916/220001590-725dc7f4-9155-4fec-90e1-6bf236234335.PNG)
+
+![failed_test](https://user-images.githubusercontent.com/101738916/220001494-8d4105ba-e820-4405-bf5b-87bc7a37a293.png)
+
